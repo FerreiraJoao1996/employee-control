@@ -1,7 +1,7 @@
 import  {BrowserRouter,Routes, Route} from 'react-router-dom'
 import Header from "./Components/Header";
 import Login from "./Components/Login";
-import Index from "./Components/Index";
+import Home from "./Components/Home";
 
 
 function RoutesApp() {
@@ -9,7 +9,7 @@ function RoutesApp() {
         <BrowserRouter>
         <Header />
             <Routes>
-                <Route path="/" element={ <Index />}></Route>
+                <Route path="/" element={ <Home />}></Route>
                 <Route path="/login" element={<Login />}></Route>
 
                 {/* <Route path="*" element={<Erro />} /> */}

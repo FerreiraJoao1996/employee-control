@@ -1,8 +1,8 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useForm, Controller } from 'react-hook-form';
 import { Container, TextField, Button } from '@mui/material';
 import { useNavigate  } from 'react-router-dom';
-import './Login.css';
+import styles from './Login.module.css';
 
 
 function Login () {
@@ -15,23 +15,18 @@ function Login () {
         redirect('/');
     };
 
-    const buttonStyles = {
-        fontWeight: 'bold',
-        fontFamily: 'system-ui',
-        fontSize: '1.05em',
-        backgroundColor: 'rgba(6, 6, 58, 0.945)',
-        display:'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: '0 auto',
-        marginTop: '15px',
-      };
+    useEffect(() => {
+        document.body.classList.add(styles.bodyLogin);
+        return () => {
+            document.body.classList.remove(styles.bodyLogin);
+        };
+    }, []);
 
     return (
-        <Container id="containerLogin">
-            <h1>Entrar</h1>
-            <p>Digite seu e-mail e senha abaixo</p>
-            <form onSubmit={handleSubmit(onSubmit)}>
+        <Container className={styles.containerLogin} id="containerForm">
+            <h1 className={styles.tituloLogin}>Entrar</h1>
+            <p className={styles.subtituloLogin}>Digite seu e-mail e senha abaixo</p>
+            <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <Controller
                         name="email"
@@ -43,7 +38,7 @@ function Login () {
                                 fullWidth
                                 label="E-mail"
                                 id="email"
-                                className="inputEmail"
+                                className={styles.inputEmail}
                                 margin="dense"
                                 {...field}
                             />
@@ -61,7 +56,7 @@ function Login () {
                                 fullWidth
                                 label="Senha"
                                 id="password"
-                                className="inputSenha"
+                                className={styles.inputSenha}
                                 margin="dense"
                                 type="password"
                                 {...field}
@@ -73,7 +68,7 @@ function Login () {
                     type="submit" 
                     variant="contained" 
                     color="primary"
-                    style={buttonStyles}
+                    className={styles.buttonStyles}
                     onClick={loginButton}
                     >
                     
