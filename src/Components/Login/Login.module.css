@@ -26,10 +26,12 @@
 .tituloLogin {
     margin-bottom: 5px;
     text-transform: uppercase;
+    text-align: center;
 }
 
 .subtituloLogin {
     margin-bottom: 15px;
+    text-align: center;
 }
 
 .form {
@@ -43,19 +45,18 @@
     height: 50px;
 }
 
-.containerLogin .form label{
+.form label{
    position: absolute;
-   /* top: -9px; */
 }
 
 .buttonStyles {
-    font-weight: bold;
-    font-family: system-ui;
-    font-size: 1.05em;
-    background-color: rgba(6, 6, 58, 0.945);
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    margin-top: 15px;
+    font-weight: bold !important;
+    font-family: system-ui !important;
+    font-size: 1.05em !important;
+    background-color: rgba(6, 6, 58, 0.945) !important;
+    display:flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 auto !important;
+    margin-top: 15px !important;
 }

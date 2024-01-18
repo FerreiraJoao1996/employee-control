@@ -1,21 +1,19 @@
-import  {BrowserRouter,Routes, Route} from 'react-router-dom'
-import Header from "./Components/Header";
+import React from 'react';
+import {BrowserRouter,Routes, Route} from 'react-router-dom';
+import Layout from './Components/Layout';
 import Login from "./Components/Login";
-import Home from "./Components/Home";
-
 
 function RoutesApp() {
     return(
-        <BrowserRouter>
-        <Header />
-            <Routes>
-                <Route path="/" element={ <Home />}></Route>
-                <Route path="/login" element={<Login />}></Route>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}/>
+          <Route path="/login" element={<Login />} />
 
-                {/* <Route path="*" element={<Erro />} /> */}
-            </Routes>
-        </BrowserRouter>
+          {/* <Route path="*" element={<Erro />} /> */}
+        </Routes>
+      </BrowserRouter>
     )
-}
+  }
 
 export default RoutesApp;
