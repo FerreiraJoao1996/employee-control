@@ -1,0 +1,17 @@
+.menu, .search {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navBar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.fotoUser {
+    display: flex;
+    justify-content: right;
+    align-items: end;
+    width: 50%;
+    border-radius: 50%;
+}

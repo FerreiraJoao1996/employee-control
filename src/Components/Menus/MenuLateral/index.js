@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
+import styles from './MenuLateral.module.css';
+
+import { styled, useTheme, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,7 +15,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import AddReaction from '@mui/icons-material';
+import InputBase from '@mui/material/InputBase';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -20,8 +23,9 @@ import ListItemText from '@mui/material/ListItemText';
 import SvgIcon from '@mui/material/SvgIcon';
 import PersonAddAlt from '@mui/icons-material/PersonAddAlt';
 import ManageAccounts from '@mui/icons-material/ManageAccounts';
+import SearchIcon from '@mui/icons-material/Search';
 
-import { Link } from 'react-router-dom';
+
 
 const drawerWidth = 240;
 
@@ -82,6 +86,50 @@ export default function MenuLateral() {
     setOpen(false);
   };
 
+  const Search = styled('div')(({ theme }) => ({
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: alpha(theme.palette.common.white, 0.25),
+    },
+    marginLeft: 0,
+    width: '100%',
+    height: '100%',
+    marginTop: '30px',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(1),
+      width: 'auto',
+    },
+  }));
+
+  const SearchIconWrapper = styled('div')(({ theme }) => ({
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }));
+
+  const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    color: 'inherit',
+    height: '100%',
+    padding: '0px',
+    '& .MuiInputBase-input': {
+      padding: theme.spacing(1, 1, 1, 0),
+      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+      transition: theme.transitions.create('width'),
+      [theme.breakpoints.up('sm')]: {
+        width: '20ch',
+        '&:focus': {
+          width: '20ch',
+        },
+      },
+    },
+  }));
+
   function HomeIcon(props) {
     return (
       <SvgIcon {...props}>
@@ -94,20 +142,42 @@ export default function MenuLateral() {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Employee Control
-          </Typography>
-        </Toolbar>
+      <Toolbar className={styles.navBar} sx={{ justifyContent: 'space-between' }}>
+      <div className={styles.menu}>
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          onClick={handleDrawerOpen}
+          edge="start"
+          sx={{ mr: 2, ...(open && { display: 'none' }) }}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Typography variant="h6" noWrap component="div" style={{display: 'flex' , alignItems: 'center'}}>
+          Employee Control
+        </Typography> 
+      </div>
+      <div className={styles.search}>
+        <Search>
+          <SearchIconWrapper className={styles.inputSearch}>
+            <SearchIcon />
+          </SearchIconWrapper>
+          <StyledInputBase
+            placeholder="Pesquisar"
+            inputProps={{ 'aria-label': 'search' }}
+          />
+        </Search>
+        <IconButton
+          aria-label="userLogado"
+          
+          style={{ background: 'none', display: 'flex', justifyContent: 'flex-end' }}
+        >
+          <img className={styles.fotoUser}
+            src="https://placeholder.com/150x150"
+          />
+        </IconButton>
+      </div>
+    </Toolbar>
       </AppBar>
       <Drawer
         sx={{
@@ -128,48 +198,48 @@ export default function MenuLateral() {
           </IconButton>
         </DrawerHeader>
         <List>
-            <ListItem  disablePadding>
-              <ListItemButton  component={Link} to="/">
-                <ListItemIcon>
-                    <HomeIcon />
-                </ListItemIcon>
-                <ListItemText>
-                    Home
-                </ListItemText>
-              </ListItemButton>
-            </ListItem>
-            <Divider />
-            <ListItem  disablePadding>
-              <ListItemButton  component={Link} to="/">
-                <ListItemIcon>
-                    <PersonAddAlt />
-                </ListItemIcon>
-                <ListItemText>
-                    Cadastrar
-                </ListItemText>
-              </ListItemButton>
-            </ListItem>
-            <Divider />
-            <ListItem  disablePadding>
-              <ListItemButton  component={Link} to="/">
-                <ListItemIcon>
-                    <ManageAccounts />
-                </ListItemIcon>
-                <ListItemText>
-                    Gerenciar conta
-                </ListItemText>
-              </ListItemButton>
-            </ListItem>
-            <Divider />
+          <ListItem disablePadding>
+            <ListItemButton component={Link} to="/">
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText>
+                Home
+              </ListItemText>
+            </ListItemButton>
+          </ListItem>
+          <Divider />
+          <ListItem disablePadding>
+            <ListItemButton component={Link} to="/">
+              <ListItemIcon>
+                <PersonAddAlt />
+              </ListItemIcon>
+              <ListItemText>
+                Cadastrar
+              </ListItemText>
+            </ListItemButton>
+          </ListItem>
+          <Divider />
+          <ListItem disablePadding>
+            <ListItemButton component={Link} to="/">
+              <ListItemIcon>
+                <ManageAccounts />
+              </ListItemIcon>
+              <ListItemText>
+                Gerenciar conta
+              </ListItemText>
+            </ListItemButton>
+          </ListItem>
+          <Divider />
         </List>
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
         <Typography paragraph>
-          
+
         </Typography>
         <Typography paragraph>
-          
+
         </Typography>
       </Main>
     </Box>
