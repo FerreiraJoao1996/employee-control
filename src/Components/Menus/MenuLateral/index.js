@@ -209,8 +209,8 @@ export default function MenuLateral() {
             </ListItemButton>
           </ListItem>
           <Divider />
-          <ListItem disablePadding>
-            <ListItemButton component={Link} to="/">
+          <ListItem disablePadding component={Link} to="/cadastro" style={{textDecoration: 'none', color: '#000'}}>
+            <ListItemButton >
               <ListItemIcon>
                 <PersonAddAlt />
               </ListItemIcon>
