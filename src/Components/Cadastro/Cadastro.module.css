@@ -10,3 +10,14 @@
 .w100 {
     width:100%;
 }
+
+.typography {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #1976d2;
+}
+
+.typography:nth-child(1){
+    margin-top: 10px;
+}

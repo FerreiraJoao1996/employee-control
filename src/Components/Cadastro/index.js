@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useForm, Controller } from 'react-hook-form';
 import InputMask from 'react-input-mask';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import styles from './Cadastro.module.css';
 import Layout from '../Layout'
 import { Button, Container, Divider, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
@@ -12,7 +14,12 @@ function Cadastro () {
     const [endereco, setEndereco] = useState({})
 
     const {handleSubmit, control, setValue  } = useForm();
-    const onSubmit = (data) => console.log(data)
+    const onSubmit = (data) => {
+        if (data.senha !== data.confirmarSenha) {
+            toast.error("As senhas não coincidem!");
+            return;
+        }
+    }
 
     const buscarEndereco  = async (cep) => {
     try {
@@ -42,8 +49,9 @@ function Cadastro () {
     return (
         <><Layout />
         <form className={styles.formRegister} onSubmit={handleSubmit(onSubmit)}>
+            <ToastContainer />
             <Container maxWidth="lg">
-                <Typography padding={0} margin={0}>Dados Pessoais</Typography>
+                <Typography className={styles.typography}>Dados Pessoais</Typography>
                 <Divider />
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={4}>
@@ -201,7 +209,7 @@ function Cadastro () {
                     </Grid>
             </Container>
             <Container maxWidth="lg">
-                <Typography padding={0} margin={0}>Endereço</Typography>
+                <Typography className={styles.typography}>Endereço</Typography>
                 <Divider />
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={3}>
@@ -345,7 +353,7 @@ function Cadastro () {
                 </Grid>
             </Container> 
             <Container maxWidth="lg">
-                <Typography padding={0} margin={0}>Profissional</Typography>
+                <Typography className={styles.typography}>Profissional</Typography>
                 <Divider />
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
@@ -447,7 +455,7 @@ function Cadastro () {
                         />
                     </Grid>
                 </Grid>
-                <Grid container spacing={2}>
+                <Grid container spacing={2} mt={1}>
                     <Grid item xs={12}>
                         <Button
                             type="submit"
@@ -459,7 +467,7 @@ function Cadastro () {
                         </Button>
                     </Grid>
                 </Grid>
-            </Container> 
+            </Container>
         </form></>
     )
 }
