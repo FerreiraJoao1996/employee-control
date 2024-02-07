@@ -6,3 +6,7 @@
     min-width: 600px;
     margin: 0 auto;
 }
+
+.w100 {
+    width:100%;
+}
