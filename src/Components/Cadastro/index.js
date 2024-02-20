@@ -14,12 +14,31 @@ function Cadastro () {
     const [endereco, setEndereco] = useState({})
 
     const {handleSubmit, control, setValue  } = useForm();
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         if (data.senha !== data.confirmarSenha) {
             toast.error("As senhas não coincidem!");
             return;
         }
-    }
+    
+        try {
+            const response = await fetch('http://127.0.0.1:3001/enviar-dados', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+            console.log(response)
+            if (!response.ok) {
+                throw new Error('Erro ao enviar os dados');
+            }
+    
+            toast.success("Dados enviados com sucesso!");
+        } catch (error) {
+            console.error('Erro ao enviar os dados:', error.message);
+            toast.error("Ocorreu um erro ao enviar os dados!");
+        }
+    }    
 
     const buscarEndereco  = async (cep) => {
     try {

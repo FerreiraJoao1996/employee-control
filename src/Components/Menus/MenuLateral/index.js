@@ -221,6 +221,17 @@ export default function MenuLateral() {
           </ListItem>
           <Divider />
           <ListItem disablePadding>
+            <ListItemButton component={Link} to="/listar">
+              <ListItemIcon>
+                <ManageAccounts />
+              </ListItemIcon>
+              <ListItemText>
+                Ver Colaboradores
+              </ListItemText>
+            </ListItemButton>
+          </ListItem>
+          <Divider />
+          <ListItem disablePadding>
             <ListItemButton component={Link} to="/">
               <ListItemIcon>
                 <ManageAccounts />
