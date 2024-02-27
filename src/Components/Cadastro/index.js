@@ -21,7 +21,7 @@ function Cadastro () {
         }
     
         try {
-            const response = await fetch('http://127.0.0.1:3001/enviar-dados', {
+            const response = await fetch('http://localhost:3001/usuario/cadastrar', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -35,7 +35,7 @@ function Cadastro () {
     
             toast.success("Dados enviados com sucesso!");
         } catch (error) {
-            console.error('Erro ao enviar os dados:', error.message);
+            console.error('Erro ao enviar os dados:');
             toast.error("Ocorreu um erro ao enviar os dados!");
         }
     }    
