@@ -13,7 +13,7 @@ function Cadastro () {
     const cidades = ['São José do Rio Preto', 'Bady Bassitt'];
     const [endereco, setEndereco] = useState({})
 
-    const {handleSubmit, control, setValue  } = useForm();
+    const {handleSubmit, control, setValue, reset } = useForm();
     const onSubmit = async (data) => {
         if (data.senha !== data.confirmarSenha) {
             toast.error("As senhas não coincidem!");
@@ -28,14 +28,20 @@ function Cadastro () {
                 },
                 body: JSON.stringify(data)
             });
+
             console.log(response)
+
             if (!response.ok) {
-                throw new Error('Erro ao enviar os dados');
+                const errorData = await response.json();
+                console.log(errorData)
+                return toast.error(errorData.error);
             }
-    
+
             toast.success("Dados enviados com sucesso!");
+            reset();
+
         } catch (error) {
-            console.error('Erro ao enviar os dados:');
+            console.error(error);
             toast.error("Ocorreu um erro ao enviar os dados!");
         }
     }    
